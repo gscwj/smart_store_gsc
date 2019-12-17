@@ -2,29 +2,37 @@ import MyAxios, {http_headers_creater,http_headers_creater_filedata,http_headers
 import '../../../mock/index'
 
 import 'element-ui/lib/theme-chalk/index.css'
-import {
-    Container,Main,Header,Footer,Menu,MenuItem,Submenu
-} from 'element-ui'
+import Element from 'element-ui'
 
-import 'vant/lib/index.css';
+/*引入swiper组件的css样式文件*/
+import 'swiper/dist/css/swiper.min.css'
+import VueAwesome from 'vue-awesome-swiper'
+/*import {
+    Container, Main, Header, Footer, Menu, MenuItem, Submenu, Backtop
+} from 'element-ui'*/
+/*import 'vant/lib/index.css';
 import {
-    Icon,Button,
+    Icon,Button,Image,Lazyload,
 } from 'vant';
+import Vant from 'vant';*/
 
 export default {
     name: 'common_api',
     install:function(Vue, options){
         console.log("--- common_api - index.js已经加载成功 - axios相关配置已完成");
-        Vue.use(Container);
-        Vue.use(Main);
-        Vue.use(Header);
-        Vue.use(Footer);
-        Vue.use(Menu);
-        Vue.use(MenuItem);
-        Vue.use(Submenu);
+        /*let element_ui_components = [Container,Main,Header,Footer,Menu,MenuItem,Submenu,Image,Backtop];
+        element_ui_components.forEach((item, index)=>{
+            Vue.use(item);
+        });*/
+        Vue.use(Element);
 
-        Vue.component(Icon.name, Icon);
-        Vue.component(Button.name, Button);
+        /*let vant_ui_components = [Icon,Button,Image,Lazyload];
+        vant_ui_components.forEach((item, index)=>{
+            Vue.use(item);
+        });*/
+        // Vue.use(Vant);
+
+        Vue.use(VueAwesome)
 
         Vue.use(MyAxios);
 

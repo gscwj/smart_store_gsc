@@ -9,8 +9,8 @@
                      @select="menu_handler">
                 <el-menu-item index="/main_page">
                     <div class="icon_btn">
-                        <!--            <i class="el-icon-s-home"></i>-->
-                        <van-icon name="wap-home-o"></van-icon>
+                        <i class="el-icon-s-home"></i>
+<!--                        <van-icon name="wap-home-o"></van-icon>-->
                         <span>Home</span>
                     </div>
                 </el-menu-item>

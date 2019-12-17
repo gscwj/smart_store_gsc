@@ -83,3 +83,31 @@ th {
     padding: 0;
     text-align: left;
 }
+
+
+/*滚动条样式*/
+/*普通DIV滚动条样式*/
+.com-scroll::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+}
+.com-scroll::-webkit-scrollbar-thumb,::-webkit-scrollbar-track{
+    border-radius: 999px;
+    border: 1px solid transparent;
+}
+.com-scroll::-webkit-scrollbar-thumb{
+    min-height: 44px;
+    width: 10px;
+    -webkit-box-shadow: inset 0 0 0 5px rgba(0,0,0,.2);
+    box-shadow: inset 0 0 0 5px rgba(0,0,0,.2);
+    -webkit-background-clip: border-box;
+    -moz-background-clip: border;
+    background-clip: border-box;
+}
+.com-scroll::-webkit-scrollbar-corner{
+    background: transparent;
+}
+.com-scroll::-webkit-scrollbar-track{
+    -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,.2) inset;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.2) inset;
+}
