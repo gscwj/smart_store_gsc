@@ -16,6 +16,8 @@ import {
 } from 'vant';
 import Vant from 'vant';*/
 
+import clonedeep from 'lodash.clonedeep'
+
 export default {
     name: 'common_api',
     install:function(Vue, options){
@@ -32,12 +34,13 @@ export default {
         });*/
         // Vue.use(Vant);
 
-        Vue.use(VueAwesome)
+        Vue.use(VueAwesome);
 
         Vue.use(MyAxios);
 
         Vue.prototype.$MyHttp_header = http_headers_creater(null);
         Vue.prototype.$MyHttp_header_formdata = http_headers_creater_formdata(null);
         Vue.prototype.$MyHttp_header_filedata = http_headers_creater_filedata(null);
+        Vue.prototype.$clonedeep = clonedeep;
     }
 }

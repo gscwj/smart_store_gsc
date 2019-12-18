@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build"
   },
   "dependencies": {
@@ -19,6 +19,8 @@
     "babel-plugin-component": "^1.1.1",
     "babel-plugin-import": "^1.13.0",
     "element-ui": "^2.13.0",
+    "lodash": "^4.17.15",
+    "lodash.clonedeep": "^4.5.0",
     "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
     "qs": "^6.9.1",

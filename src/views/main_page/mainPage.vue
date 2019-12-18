@@ -22,22 +22,21 @@
                 </swiper>
             </div>
             <div class="classify_div">
-                <el-carousel
-                        :autoplay="false"
-                        arrow="never"
-                        indicator-position="none"
-                        height="100%">
-                    <el-carousel-item v-for="page in [1,2]" :key="page">
+                <swiper class="swiper_div" :options="swiperOption3" ref="mySwiper3" @someSwiperEvent="callback">
+                    <!-- slides -->
+                    <swiper-slide class="slide_item" v-for="(page,index) in classify_page_objs" :key="index">
                         <div class="classify_div_page">
-                            <div class="page_classfiy_obj" v-for="obj in classify_page_objs" :key="obj.name">
+                            <div class="page_classfiy_obj" v-for="obj in page" :key="obj.name">
                                 <svg class="obj_icon" aria-hidden="true">
                                     <use :xlink:href="'#'+obj.icon_class"></use>
                                 </svg>
                                 <span class="obj_text">{{obj.name}}</span>
                             </div>
                         </div>
-                    </el-carousel-item>
-                </el-carousel>
+                    </swiper-slide>
+                    <!-- Optional controls -->
+                    <div class="swiper-pagination" slot="pagination"></div>
+                </swiper>
             </div>
             <div class="book_list">
                 <div class="book_kuang">
@@ -45,7 +44,11 @@
                         <span>图书畅销榜<i class="iconfont iconforword"></i></span><br/>
                     </div>
                     <div class="book_content">
+                        <span>jlskdjlfksjd</span>
+                        <div style="height: 20px;background-color: #4cbcfb">
 
+                        </div>
+                        <p>图书册数</p>
                     </div>
                 </div>
                 <div class="book_kuang">
@@ -78,6 +81,16 @@
             return {
                 serach_keyword: '',/*搜索关键词*/
                 swiperOption2: {
+                    direction: 'horizontal',
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    mousewheel: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true
+                    }
+                },
+                swiperOption3: {
                     direction: 'horizontal',
                     slidesPerView: 1,
                     spaceBetween: 30,
@@ -177,6 +190,26 @@
                         info: '',
                         icon_class: 'iconbarrel'
                     },
+                    {
+                        name: '计算机',
+                        info: '',
+                        icon_class: 'iconjisuanji1'
+                    },
+                    {
+                        name: '美食',
+                        info: '',
+                        icon_class: 'iconmeishi1'
+                    },
+                    {
+                        name: '启蒙',
+                        info: '',
+                        icon_class: 'iconqimeng1'
+                    },
+                    {
+                        name: '启蒙1',
+                        info: '',
+                        icon_class: 'iconqimeng1'
+                    },
                 ],
                 curr_time: new Date(),
                 timer: null
@@ -196,6 +229,20 @@
             this.timer = setInterval(()=>{
                 this.curr_time = new Date();
             },1000);
+            let tmp_classigy_page_objs = this.$clonedeep(this.classify_page_objs);
+            let array = [];
+            this.classify_page_objs = [];
+            tmp_classigy_page_objs.forEach((item,index)=>{
+                if(index!==0&&index%10===0){
+                    this.classify_page_objs.push(array);
+                    array = [];
+                }
+                array.push(item);
+                if(index+1===tmp_classigy_page_objs.length){
+                    this.classify_page_objs.push(array);
+                }
+            });
+            console.log("this.classify_page_objs =",this.classify_page_objs);
         },
         beforeDestroy(){
             clearInterval(this.timer);
@@ -273,24 +320,23 @@
             }
 
             .classify_div {
-                margin: 5px 0 0 0;
+                margin: 10px 0 0 0;
                 height: 10rem;
+                /*background-color: rgba(76,188,251,.4);*/
                 background-color: rgba(255,255,255,.8);
 
-                .el-carousel {
+                .swiper_div {
                     box-sizing: border-box;
                     height: 100%;
                     padding: 5px;
-
                     .classify_div_page {
                         box-sizing: border-box;
                         height: 100%;
                         /*background-color: #4cbcfb;*/
                         display: flex;
-                        justify-content: center;
+                        justify-content: flex-start;
                         flex-wrap: wrap;
-                        padding: 5px;
-
+                        padding: 5px 15px 5px 15px;
                         .page_classfiy_obj {
                             height: 4rem;
                             width: 3.5rem;
