@@ -46,7 +46,8 @@
                     <div class="book_content">
                         <span>jlskdjlfksjd</span>
                         <div style="height: 20px;background-color: #4cbcfb">
-
+                            聚少离多开发交流撒解放路卡萨丁
+                            <el-button>劳动法律萨科技的</el-button>
                         </div>
                         <p>图书册数</p>
                     </div>
