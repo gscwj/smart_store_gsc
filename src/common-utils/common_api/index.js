@@ -1,5 +1,4 @@
 import MyAxios, {http_headers_creater,http_headers_creater_filedata,http_headers_creater_formdata} from "./request";
-import '../../../mock/index'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import Element from 'element-ui'

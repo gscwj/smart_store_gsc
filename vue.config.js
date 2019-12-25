@@ -2,7 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const merge = require('lodash/merge');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 module.exports = {
     publicPath: '',// 部署应用时的根路径(默认'/'),也可用相对路径(存在使用限制)
@@ -36,7 +37,7 @@ module.exports = {
         // devtools: "source-map",
         proxy: {// 配置多个代理(配置一个 proxy: 'http://localhost:4000' )
             '/api': {
-                target: 'http://localhost:3000',
+                target: 'http://localhost:8088',
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: {
@@ -88,14 +89,6 @@ module.exports = {
                             }
                         }
                     }),
-                    new CompressionWebpackPlugin({
-                        algorithm: 'gzip',
-                        // test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
-                        test: /\.js$|\.html$|\.css/,
-                        threshold: 5120,
-                        minRatio: 0.8,
-                        deleteOriginalAssets: false
-                    }),
                 ]
             },
         };
@@ -110,22 +103,32 @@ module.exports = {
                         jQuery: "jquery",
                         "windows.jQuery": "jquery"
                     }),
+                    new CompressionWebpackPlugin({
+                        algorithm: 'gzip',
+                        // test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+                        test: /\.js$|\.html$|\.css/,
+                        threshold: 5120,
+                        minRatio: 0.8,
+                        deleteOriginalAssets: false
+                    }),
+                    new webpack.DllReferencePlugin({
+                        context: process.cwd(),
+                        manifest: require('./public/vendor/vendor-manifest.json')
+                    }),
+                    // 将 dll 注入到 生成的 html 模板中
+                    new AddAssetHtmlPlugin({
+                        // dll文件位置
+                        filepath: path.resolve(__dirname, './public/vendor/*.js'),
+                        // dll 引用路径
+                        publicPath: './vendor',
+                        // dll最终输出的目录
+                        outputPath: './vendor'
+                    }),
                 ]
             });
         } else {
             // 为开发环境修改配置...
             config.mode = 'development'
         }
-        /*Object.assign(config, {
-            // 开发生产共同配置
-            devtool: 'source-map',
-            plugins: [
-                new webpack.ProvidePlugin({
-                    $: "jquery",
-                    jQuery: "jquery",
-                    "windows.jQuery": "jquery"
-                })
-            ]
-        })*/
     },
 };

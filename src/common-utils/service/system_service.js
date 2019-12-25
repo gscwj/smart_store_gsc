@@ -7,5 +7,5 @@ const _MyHttp = Vue.prototype.$MyHttp;
 const _MyHttp_header = Vue.prototype.$MyHttp_header;
 
 export function getUserInfo(params) {
-    return _MyHttp.post(url.GET_USER_INFO, params, _MyHttp_header);
+    return _MyHttp.get(url.GET_USER_INFO, {params:params}, _MyHttp_header);
 }
