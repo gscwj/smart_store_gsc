@@ -5,8 +5,10 @@
 * 当真实后台接入时，将后台接口替换对应mock接口就行了
 * */
 import mock_api from '../../../mock/api'
-const API_PREFIX = '/api';
-
+let API_PREFIX = '/api';
+if(process.env.NODE_ENV==='production'){
+    API_PREFIX = 'http://localhost:8088';
+}
 let API_HANDLER = {
     GET_USER_INFO: mock_api.getUserInfo,/*获取用户信息列表*/
     GET_COMPANY_INFO: mock_api.getCompanyInfo,/*获取用户信息列表*/
