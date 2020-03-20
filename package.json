@@ -10,6 +10,7 @@
     "dev": "concurrently \"npm run mock\" \"npm run serve\""
   },
   "dependencies": {
+    "@antv/g6": "^3.4.0",
     "core-js": "^3.4.3",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3",

@@ -2,6 +2,7 @@
     <el-container>
         <el-backtop target=".el-main" :visibility-height="100" :bottom="50" :right="5"></el-backtop>
         <el-main>
+            <el-button type="primary" size="mini" @click="go_antvg6">跳转至G6页面</el-button>
             <div class="search">
                 <el-input
                         placeholder="清明上河图"
@@ -254,6 +255,11 @@
             console.log("destroyed timer去除");
         },
         methods: {
+            go_antvg6:function(){
+                this.$router.push({
+                    path: '/g6_view'
+                });
+            },
             main_flow: function () {
                 getUserInfo({}).then((res) => {
                     console.log("main_page :res =", res);

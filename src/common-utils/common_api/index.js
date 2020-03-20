@@ -6,6 +6,7 @@ import Element from 'element-ui'
 /*引入swiper组件的css样式文件*/
 import 'swiper/dist/css/swiper.min.css'
 import VueAwesome from 'vue-awesome-swiper'
+import G6 from '@antv/g6'
 /*import {
     Container, Main, Header, Footer, Menu, MenuItem, Submenu, Backtop
 } from 'element-ui'*/
@@ -41,5 +42,6 @@ export default {
         Vue.prototype.$MyHttp_header_formdata = http_headers_creater_formdata(null);
         Vue.prototype.$MyHttp_header_filedata = http_headers_creater_filedata(null);
         Vue.prototype.$clonedeep = clonedeep;
+        Vue.prototype.$G6 = G6;
     }
 }

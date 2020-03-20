@@ -6,6 +6,7 @@ const mainPage = r=>require.ensure([],() =>r(require('@/views/main_page/mainPage
 const store = r=>require.ensure([],() =>r(require('@/views/store/store')));
 const forum = r=>require.ensure([],() =>r(require('@/views/forum/forum')));
 const corner = r=>require.ensure([],() =>r(require('@/views/corner/corner')));
+const g6View = r=>require.ensure([],() =>r(require('@/views/g6_view/index')));
 
 const system_router = [
     {
@@ -18,6 +19,11 @@ const system_router = [
                 path: '/main_page',
                 name: 'main-page',
                 component: mainPage,
+            },
+            {
+                path: '/g6_view',
+                name: 'g6-view',
+                component: g6View,
             },
             {
                 path: '/store',
